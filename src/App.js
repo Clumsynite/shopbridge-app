@@ -1,13 +1,12 @@
 import { Layout, Menu } from "antd";
-import { HeartFilled } from "@ant-design/icons";
-
-import "./App.css";
-import ExternalLink from "./CommonComponents/ExternalLink";
 import { Link, Route, Routes } from "react-router-dom";
+
+import "./styles/App.css";
 import Product from "./Page/Product";
 import Home from "./Page/Home";
+import Footer from "./Components/Footer";
 
-const { Content, Footer, Header } = Layout;
+const { Content, Header } = Layout;
 
 function App() {
   return (
@@ -27,10 +26,7 @@ function App() {
           </Routes>
         </div>
       </Content>
-      <Footer style={{ textAlign: "center" }}>
-        Made with <HeartFilled style={{ color: "#ff1129" }} /> by{" "}
-        <ExternalLink name="Rishabh Pathak" title="Link to my Github Profile" to="https://github.com/Clumsynite" />
-      </Footer>
+      <Footer />
     </Layout>
   );
 }

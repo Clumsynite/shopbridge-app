@@ -1,7 +1,7 @@
 .site-layout-content {
   height: calc(100vh - 30px);
-  padding: 24px;
-  background: #fff;
+  /* padding: 24px; */
+  /* background: #fff; */
 }
 #components-layout-demo-top .logo {
   float: left;
