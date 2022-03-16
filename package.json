@@ -4,8 +4,12 @@
   "private": true,
   "author": "Rishabh Pathak <rishabhjpathak@gmail.com>",
   "dependencies": {
+    "antd": "^4.19.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0"
   },
   "scripts": {
