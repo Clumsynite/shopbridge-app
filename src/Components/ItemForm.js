@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Form, Input, InputNumber, Row, Col, Button, Upload, message } from "antd";
 import Text from "../CommonComponents/Text";
 import ImageUpload from "./ImageUpload";
-import { addItem } from "../api/inventory";
+import { addItem, updateItem } from "../api/inventory";
 const { TextArea } = Input;
 
-export default function ItemForm({ edit, item, onSubmit }) {
+export default function ItemForm({ item, onSubmit }) {
   const [itemForm] = Form.useForm();
   const [imageUrl, setImageUrl] = useState(item?.photo || "");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,12 +14,12 @@ export default function ItemForm({ edit, item, onSubmit }) {
   const onFinish = async (values) => {
     try {
       await itemForm.validateFields();
-      const item = values;
-      if (imageUrl) item.photo = imageUrl;
-      console.log({ item });
+
+      const newItem = values;
+      if (imageUrl) newItem.photo = imageUrl;
       setIsSubmitting(true);
       setIsDisabled(true);
-      const response = await addItem(item);
+      const response = item ? await updateItem({ ...item, ...newItem }) : await addItem(newItem);
       if (response.error) throw response;
       if (response.success) {
         message.success(response.msg);
@@ -38,7 +38,7 @@ export default function ItemForm({ edit, item, onSubmit }) {
     <div>
       <Row justify="center" style={{ paddingBottom: 20 }}>
         <Text bold size={24}>
-          {edit ? `Edit ${item.name}` : "Add New Item"}
+          {item ? `Edit ${item.name}` : "Add New Item"}
         </Text>
       </Row>
       <Form form={itemForm} name="register" onFinish={onFinish} initialValues={item} scrollToFirstError>

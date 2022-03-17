@@ -1,5 +1,5 @@
 import { message } from "antd";
-import _ from "lodash";
+import _, { clone } from "lodash";
 import React, { useState, useEffect, useRef } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
@@ -45,17 +45,22 @@ export default function Home() {
   const onAddItemClose = () => setIsAddProductVisible(false);
 
   const onAddItem = (item) => {
-    setInventory([...inventory, item]);
+    let clonedInventory = _.cloneDeep(inventory);
+    let existingItem = _.findIndex(clonedInventory, { _id: item._id });
+    if (existingItem > -1) {
+      clonedInventory[existingItem] = item;
+    } else {
+      clonedInventory.push(item);
+    }
+    setInventory([...clonedInventory]);
     onAddItemClose();
   };
 
-  const onEditItem = async (item) => {
-    try {
-    } catch (error) {
-      message.error("Error editing item");
-      console.error("Error editing item", error);
-    }
+  const onEditItem = (item) => {
+    setSelectedItem(item);
+    setIsAddProductVisible(true);
   };
+
   const onDeleteItem = async (item) => {
     try {
       setIsDeleting(item._id);
@@ -106,7 +111,7 @@ export default function Home() {
       <AddItemButton onClick={onAddNewItem} />
       {isAddProductVisible && (
         <Modal visible={isAddProductVisible} onCancel={onAddItemClose} width={"60vw"}>
-          <ItemForm onSubmit={onAddItem} setInventory={setInventory} />
+          <ItemForm onSubmit={onAddItem} item={selectedItem} />
         </Modal>
       )}
     </div>
