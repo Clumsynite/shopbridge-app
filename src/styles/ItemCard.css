@@ -6,11 +6,7 @@
   background-color: #fff;
   padding: 12px;
   text-align: center;
-}
-
-.card_body:hover {
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  transform: scale(1.1);
+  position: relative;
 }
 
 .card_actions {
@@ -18,20 +14,11 @@
   opacity: 0;
   transition: 0.3s ease-in-out;
 }
-.card_body:hover > .card_actions {
-  height: 100%;
-  opacity: 1;
-  padding-bottom: 10px;
-}
 
 .card_avatar {
   border: 1px solid #e6e6e6;
   border-radius: 50px;
   transition: 0.3s ease-in-out;
-}
-
-.card_body:hover > .card_avatar {
-  border-radius: 0px;
 }
 
 .card_title {
@@ -48,10 +35,6 @@
   border-bottom: 1px solid #e6e6e6;
   height: 0px;
 }
-.card_body:hover > .card_desc {
-  height: 160px;
-  padding: 12px;
-}
 
 .card_details {
   margin-top: 8px;
@@ -60,4 +43,26 @@
 
 .card_quantity {
   font-size: 20px;
+}
+
+@media (hover: hover) {
+  .card_body:hover > .card_actions {
+    height: 30px;
+    padding-bottom: 10px;
+    opacity: 1;
+  }
+
+  .card_body:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transform: scale(1.1);
+  }
+
+  .card_body:hover > .card_avatar {
+    border-radius: 0px;
+  }
+
+  .card_body:hover > .card_desc {
+    min-height: 80px;
+    padding: 12px;
+  }
 }

@@ -5,7 +5,7 @@ import ImageUpload from "./ImageUpload";
 import { addItem } from "../api/inventory";
 const { TextArea } = Input;
 
-export default function ItemForm({ edit, item, onClose }) {
+export default function ItemForm({ edit, item, onSubmit }) {
   const [itemForm] = Form.useForm();
   const [imageUrl, setImageUrl] = useState(item?.photo || "");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,9 +23,9 @@ export default function ItemForm({ edit, item, onClose }) {
       if (response.error) throw response;
       if (response.success) {
         message.success(response.msg);
-        onClose();
+        setIsSubmitting(false);
+        onSubmit(response.item);
       }
-      setIsSubmitting(false);
     } catch (error) {
       setIsSubmitting(false);
       setIsDisabled(false);

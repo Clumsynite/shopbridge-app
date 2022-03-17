@@ -43,7 +43,9 @@ export const updateItem = async (item) => {
 
 export const deleteItem = async (item) => {
   try {
-    const response = await axios.delete(`${url}/inventory`, item);
+    const response = await axios.delete(`${url}/inventory`, {
+      data: item,
+    });
     return response.data;
   } catch (error) {
     console.error(error);

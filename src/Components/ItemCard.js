@@ -1,25 +1,32 @@
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 import React from "react";
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import Text from "../CommonComponents/Text";
 import "../styles/ItemCard.css";
 import ItemAvatar from "./ItemAvatar";
 import { CRIMSON, DODGER_BLUE } from "../config/colors";
+import { Loading } from "../CommonComponents";
 
-export default function ItemCard({ item, onEdit, onDelete }) {
+export default function ItemCard({ item, onEdit, onDelete, isDeleting }) {
   const { photo, name, description, price, quantity } = item;
+
   return (
-    <div className="card_body">
+    <div className="card_body" style={{ opacity: isDeleting ? 0.5 : 1 }}>
+      {isDeleting && (
+        <div style={{ position: "absolute", top: "50%", left: "50%", opacity: 1 }}>
+          <Spin />
+        </div>
+      )}
       <div className="card_actions">
         <Row justify="space-between" align="middle">
           <DeleteFilled
             style={{ color: CRIMSON, fontSize: 24, cursor: "pointer" }}
-            onClick={onDelete}
+            onClick={() => (isDeleting ? null : onDelete(item))}
             title="Delete Item"
           />
           <EditFilled
             style={{ color: DODGER_BLUE, fontSize: 24, cursor: "pointer" }}
-            onClick={onEdit}
+            onClick={() => (isDeleting ? null : onEdit(item))}
             title="Edit Item"
           />
         </Row>
