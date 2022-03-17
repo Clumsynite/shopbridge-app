@@ -1,6 +1,6 @@
-import { message } from "antd";
-import _, { clone } from "lodash";
-import React, { useState, useEffect, useRef } from "react";
+import { message, Pagination, Row } from "antd";
+import _ from "lodash";
+import React, { useState, useEffect } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 import { deleteItem, getItems } from "../api/inventory";
@@ -14,17 +14,32 @@ import "../styles/Home.css";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [inventory, setInventory] = useState([]);
+  const [filteredInventory, setFilteredInventory] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isAddProductVisible, setIsAddProductVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [pageOffset, setPageOffset] = useState(0);
+
+  const sortByDate = (array) =>
+    array.sort((a, b) => {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
 
   const initialise = async () => {
     try {
       setIsLoading(true);
       const response = await getItems();
       if (response.error) throw response;
-      if (response.success) setInventory(response.items);
+      if (response.success) {
+        let inventory = response.items;
+        console.log({ inventory });
+        inventory = sortByDate(inventory);
+        setInventory(inventory);
+        setFilteredInventory(_.slice(inventory, 0, itemsPerPage));
+      }
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -37,6 +52,12 @@ export default function Home() {
   useEffect(() => {
     initialise();
   }, []);
+
+  useEffect(() => {
+    let clonedInventory = [...inventory];
+    clonedInventory = sortByDate(clonedInventory);
+    setFilteredInventory(_.slice(clonedInventory, pageOffset, pageOffset + itemsPerPage));
+  }, [currentPage, itemsPerPage, inventory]);
 
   const onAddNewItem = () => {
     setIsAddProductVisible(true);
@@ -52,6 +73,7 @@ export default function Home() {
     } else {
       clonedInventory.push(item);
     }
+    clonedInventory = sortByDate(clonedInventory);
     setInventory([...clonedInventory]);
     onAddItemClose();
   };
@@ -69,6 +91,7 @@ export default function Home() {
       if (response.success) {
         let clonedInventory = _.cloneDeep(inventory);
         clonedInventory = _.reject(clonedInventory, (i) => i._id === item._id);
+        clonedInventory = _.orderBy(clonedInventory, ["createdAt"], ["desc"]);
         setInventory([...clonedInventory]);
         message.success(response.msg);
       }
@@ -78,6 +101,13 @@ export default function Home() {
       message.error("Error deleting item");
       console.error("Error deleting item", error);
     }
+  };
+
+  const handlePageChange = (page) => {
+    const currentPage = page - 1;
+    const offset = currentPage * itemsPerPage;
+    setCurrentPage(page);
+    setPageOffset(offset);
   };
 
   return isLoading ? (
@@ -95,7 +125,7 @@ export default function Home() {
             // columns={5}
           >
             <Masonry gutter="20px">
-              {inventory.map((item) => (
+              {filteredInventory.map((item) => (
                 <ItemCard
                   item={item}
                   key={item._id}
@@ -106,6 +136,17 @@ export default function Home() {
               ))}
             </Masonry>
           </ResponsiveMasonry>
+          <Row style={{ padding: "30px 0" }} align="middle" justify="center">
+            <Pagination
+              showSizeChanger
+              onShowSizeChange={(_, pageSize) => setItemsPerPage(pageSize)}
+              current={currentPage}
+              total={inventory.length}
+              pageSize={itemsPerPage}
+              hideOnSinglePage
+              onChange={handlePageChange}
+            />
+          </Row>
         </div>
       )}
       <AddItemButton onClick={onAddNewItem} />
