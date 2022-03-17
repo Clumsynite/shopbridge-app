@@ -47,25 +47,23 @@
   font-size: 20px;
 }
 
-@media (hover: hover) {
-  .card_body:hover > .card_actions {
-    height: 30px;
-    padding-bottom: 10px;
-    opacity: 1;
-  }
+.card_body:hover > .card_actions {
+  height: 30px;
+  padding-bottom: 10px;
+  opacity: 1;
+}
 
-  .card_body:hover {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    transform: scale(1.1);
-    z-index: 2;
-  }
+.card_body:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transform: scale(1.1);
+  z-index: 2;
+}
 
-  .card_body:hover > .card_avatar {
-    border-radius: 0px;
-  }
+.card_body:hover > .card_avatar {
+  border-radius: 0px;
+}
 
-  .card_body:hover > .card_desc {
-    min-height: 80px;
-    padding: 12px;
-  }
+.card_body:hover > .card_desc {
+  min-height: 80px;
+  padding: 12px;
 }

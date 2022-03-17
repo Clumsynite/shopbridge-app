@@ -16,10 +16,8 @@ function App() {
           ShopBridge
         </Text>
       </Header>
-      <Content style={{ padding: "0 50px" }}>
-        <div className="site-layout-content">
-          <Home />
-        </div>
+      <Content style={{ padding: "20px 50px 80px 50px", overflowY: "auto", height: "calc(100vh - 134px)" }}>
+        <Home />
       </Content>
       <Footer />
     </Layout>
