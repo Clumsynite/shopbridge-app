@@ -1,10 +1,10 @@
-import { Layout, Menu } from "antd";
-import { Link, Route, Routes } from "react-router-dom";
+import { Layout } from "antd";
 
 import "./styles/App.css";
-import Product from "./Page/Product";
 import Home from "./Page/Home";
 import Footer from "./Components/Footer";
+import Text from "./CommonComponents/Text";
+import { WHITE } from "./config/colors";
 
 const { Content, Header } = Layout;
 
@@ -12,18 +12,13 @@ function App() {
   return (
     <Layout className="layout">
       <Header>
-        <Menu mode="horizontal" theme="dark">
-          <Menu.Item key="">
-            <Link to="/">Home</Link>
-          </Menu.Item>
-        </Menu>
+        <Text bold size={32} style={{ color: WHITE }}>
+          ShopBridge
+        </Text>
       </Header>
       <Content style={{ padding: "0 50px" }}>
         <div className="site-layout-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product" element={<Product />} />
-          </Routes>
+          <Home />
         </div>
       </Content>
       <Footer />
