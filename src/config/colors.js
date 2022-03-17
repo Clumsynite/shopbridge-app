@@ -3,6 +3,7 @@ export const LIGHT_BLUE = "#ADD8E6";
 export const BLACK = "#000000";
 export const WHITE = "#FFFFFF";
 export const LIGHT_RED = "#FF7676";
+export const CRIMSON = "#e32636	";
 export const ALICE_BLUE = "#F0F8FF";
 
 export default {
@@ -12,4 +13,5 @@ export default {
   LIGHT_RED,
   ALICE_BLUE,
   LIGHT_BLUE,
+  CRIMSON,
 };
