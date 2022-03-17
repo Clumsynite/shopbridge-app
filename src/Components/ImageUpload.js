@@ -25,7 +25,7 @@ function beforeUpload(file) {
   return isJpgOrPng && isLt2M;
 }
 
-const ImageUpload = ({ imageUrl, setImageUrl }) => {
+const ImageUpload = ({ imageUrl, setImageUrl, disabled }) => {
   const [isLoading, setIsLoading] = useState(false);
   // const [imageUrl, setImageUrl] = useState("");
   const [previewImage, setPreviewImage] = useState("");
@@ -65,6 +65,7 @@ const ImageUpload = ({ imageUrl, setImageUrl }) => {
   return (
     <div style={{ textAlign: "center" }}>
       <Upload
+        disabled={disabled}
         showUploadList={false}
         beforeUpload={beforeUpload}
         onChange={handleChange}
@@ -79,7 +80,7 @@ const ImageUpload = ({ imageUrl, setImageUrl }) => {
         <Button onClick={handlePreview} size="small" style={{ marginRight: 10 }}>
           Preview
         </Button>
-        <Button onClick={() => setImageUrl("")} style={{ marginLeft: 10 }} size="small">
+        <Button onClick={() => (!disabled ? setImageUrl("") : null)} style={{ marginLeft: 10 }} size="small">
           Clear
         </Button>
       </Row>

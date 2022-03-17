@@ -1,10 +1,11 @@
 import { message } from "antd";
 import React, { useState, useEffect } from "react";
-import { PlusCircleFilled } from "@ant-design/icons";
 
 import { getItems } from "../api/inventory";
 import { EmptyContent, Loading } from "../CommonComponents";
-import { DODGER_BLUE } from "../config/colors";
+import Modal from "../CommonComponents/Modal";
+import AddItemButton from "../Components/AddItemButton";
+import ItemForm from "../Components/ItemForm";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +36,10 @@ export default function Home() {
     setIsAddProductVisible(true);
   };
 
+  const onAddItemClose = () => {
+    setIsAddProductVisible(false);
+  };
+
   return isLoading ? (
     <Loading />
   ) : isError ? (
@@ -43,16 +48,11 @@ export default function Home() {
     <div>
       {inventory.length === 0 ? <EmptyContent label="Inventory is currently Empty" /> : <div>Inventory</div>}
       <AddItemButton onClick={onAddNewItem} />
+      {isAddProductVisible && (
+        <Modal visible={isAddProductVisible} onCancel={onAddItemClose} width={"60vw"}>
+          <ItemForm onClose={onAddItemClose} />
+        </Modal>
+      )}
     </div>
   );
 }
-
-const AddItemButton = ({ onClick }) => (
-  <div
-    style={{ position: "fixed", bottom: 25, right: 25, cursor: "pointer" }}
-    title="Add New Product"
-    onClick={onClick}
-  >
-    <PlusCircleFilled style={{ color: DODGER_BLUE, fontSize: 45 }} />
-  </div>
-);
