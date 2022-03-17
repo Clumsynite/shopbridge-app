@@ -35,7 +35,6 @@ export default function Home() {
       if (response.error) throw response;
       if (response.success) {
         let inventory = response.items;
-        console.log({ inventory });
         inventory = sortByDate(inventory);
         setInventory(inventory);
         setFilteredInventory(_.slice(inventory, 0, itemsPerPage));
