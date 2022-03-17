@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 .site-layout-content {
   height: calc(100vh - 30px);
   /* padding: 24px; */
@@ -13,4 +15,30 @@
 .ant-row-rtl #components-layout-demo-top .logo {
   /* float: right; */
   margin: 16px 0 16px 24px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #121212;
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #555555;
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888888;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
 }

@@ -66,7 +66,7 @@ export default function ItemForm({ edit, item, onClose }) {
                 },
               ]}
             >
-              <TextArea showCount maxLength={250} style={{ height: 80 }} />
+              <TextArea showCount style={{ height: 80 }} />
             </Form.Item>
             <Input.Group>
               <Row justify="space-between">

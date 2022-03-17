@@ -5,6 +5,7 @@ import { getItems } from "../api/inventory";
 import { EmptyContent, Loading } from "../CommonComponents";
 import Modal from "../CommonComponents/Modal";
 import AddItemButton from "../Components/AddItemButton";
+import ItemCard from "../Components/ItemCard";
 import ItemForm from "../Components/ItemForm";
 
 export default function Home() {
@@ -46,7 +47,15 @@ export default function Home() {
     <EmptyContent label="Oops! An error occurred" />
   ) : (
     <div>
-      {inventory.length === 0 ? <EmptyContent label="Inventory is currently Empty" /> : <div>Inventory</div>}
+      {inventory.length === 0 ? (
+        <EmptyContent label="Inventory is currently Empty" />
+      ) : (
+        <div style={{ padding: "20px 12px" }}>
+          {inventory.map((item) => (
+            <ItemCard item={item} key={item._id} />
+          ))}
+        </div>
+      )}
       <AddItemButton onClick={onAddNewItem} />
       {isAddProductVisible && (
         <Modal visible={isAddProductVisible} onCancel={onAddItemClose} width={"60vw"}>

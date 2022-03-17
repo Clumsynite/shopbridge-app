@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Upload, message, Modal, Button, Row } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 
-import "../styles/ImageUpload.css";
-
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
