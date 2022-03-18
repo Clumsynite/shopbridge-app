@@ -6,7 +6,7 @@ export const LIGHT_RED = "#FF7676";
 export const CRIMSON = "#e32636	";
 export const ALICE_BLUE = "#F0F8FF";
 
-export default {
+const colors = {
   DODGER_BLUE,
   BLACK,
   WHITE,
@@ -15,3 +15,5 @@ export default {
   LIGHT_BLUE,
   CRIMSON,
 };
+
+export default colors;

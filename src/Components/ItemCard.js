@@ -5,7 +5,6 @@ import Text from "../CommonComponents/Text";
 import "../styles/ItemCard.css";
 import ItemAvatar from "./ItemAvatar";
 import { CRIMSON, DODGER_BLUE } from "../config/colors";
-import { Loading } from "../CommonComponents";
 
 export default function ItemCard({ item, onEdit, onDelete, isDeleting }) {
   const { photo, name, description, price, quantity } = item;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, InputNumber, Row, Col, Button, Upload, message } from "antd";
+import { Form, Input, InputNumber, Row, Col, Button, message } from "antd";
 import Text from "../CommonComponents/Text";
 import ImageUpload from "./ImageUpload";
 import { addItem, updateItem } from "../api/inventory";
