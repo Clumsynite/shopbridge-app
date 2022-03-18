@@ -4,7 +4,7 @@ import { DODGER_BLUE } from "../config/colors";
 
 const AddItemButton = ({ onClick }) => (
   <div
-    style={{ position: "fixed", bottom: 25, right: 25, cursor: "pointer" }}
+    style={{ position: "fixed", bottom: 25, right: 25, cursor: "pointer", zIndex: 10 }}
     title="Add New Product"
     onClick={onClick}
   >
