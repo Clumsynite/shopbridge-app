@@ -2,6 +2,46 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Introduction
+
+ShopBridge is a React application that allows you to handle your Invenntory.
+
+With ShopBridge you can:
+
+- Add New Items to Inventory
+- Update Existing Items
+- Delete Items from Inventory
+- View all items in Inventory
+
+## Screenshots
+
+### empty-inventory
+
+Empty Inventory screen
+
+This is how the app looks at first.
+
+![Empty Inventory](/screenshots/inventory-empty.png)
+
+### Add New Item
+
+To add new Item, you can click on the Add button on the bottom right of your screen and fill the form.
+
+![Add New Item](/screenshots/add-new-item.gif)
+
+### Edit Item
+
+To edit and item, you can hover on the Item and actions will become visible.
+You can see 2 actions, `Delete` and `Edit`. You can click on the Edit icon to edit this item.
+
+![Edit Item](/screenshots/edit-item.gif)
+
+### Delete Item
+
+To delete an item, you can click on the Delete icon after hovering on that Item.
+
+![Delete Item](/screenshots/delete-item.gif)
+
 ## Available Scripts
 
 In the project directory, you can run:
