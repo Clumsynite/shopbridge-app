@@ -50,13 +50,14 @@ export default function Home() {
 
   useEffect(() => {
     initialise();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     let clonedInventory = [...inventory];
     clonedInventory = sortByDate(clonedInventory);
     setFilteredInventory(_.slice(clonedInventory, pageOffset, pageOffset + itemsPerPage));
-  }, [currentPage, itemsPerPage, inventory]);
+  }, [currentPage, itemsPerPage, inventory, pageOffset]);
 
   const onAddNewItem = () => {
     setIsAddProductVisible(true);
