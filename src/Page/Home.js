@@ -116,13 +116,17 @@ export default function Home() {
   ) : (
     <div>
       {inventory.length === 0 ? (
-        <EmptyContent label="Inventory is currently Empty" />
+        <EmptyContent
+          label={
+            <div style={{ textAlign: "center" }}>
+              <div>Inventory is currently Empty</div>
+              <div>Try adding new items from the button on your bottom right. </div>
+            </div>
+          }
+        />
       ) : (
         <div style={{ padding: "20px 12px" }}>
-          <ResponsiveMasonry
-            columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1240: 4 }}
-            // columns={5}
-          >
+          <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1240: 4 }}>
             <Masonry gutter="20px">
               {filteredInventory.map((item) => (
                 <ItemCard
