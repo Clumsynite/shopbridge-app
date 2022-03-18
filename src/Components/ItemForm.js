@@ -112,7 +112,7 @@ export default function ItemForm({ item, onSubmit }) {
         <Row style={{ paddingTop: 20 }} justify="center">
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={isSubmitting}>
-              Add New Item
+              {item ? "Update" : "Add New"} Item
             </Button>
           </Form.Item>
         </Row>
