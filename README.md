@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# ShopBridge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/372f42f7-8da3-44d4-80fc-f35bcf2718a3/deploy-status)](https://app.netlify.com/sites/shopbridge-app/deploys)
 
 ## Introduction
 
@@ -43,6 +43,8 @@ To delete an item, you can click on the Delete icon after hovering on that Item.
 ![Delete Item](/screenshots/delete-item.gif)
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
