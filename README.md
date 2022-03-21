@@ -4,7 +4,7 @@
 
 ## Introduction
 
-ShopBridge is a React application that allows you to handle your Invenntory.
+ShopBridge is a React application that allows you to handle your Inventory.
 
 With ShopBridge you can:
 
